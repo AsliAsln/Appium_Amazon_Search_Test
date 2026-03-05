@@ -1,6 +1,5 @@
 # Amazon Mobile App - Search Functionality Test Automation
 
-Appium test automation project for the **Amazon Android** mobile app's search feature using **Java**, **TestNG**, and **Page Object Model (POM)**.
 
 ## Tech Stack
 
@@ -25,10 +24,13 @@ src/
 │       └── TestListener.java
 └── test/java/com/amazon/tests/
     ├── BaseTest.java
-    └── PositiveSearchTest.java
+    ├── PositiveSearchTest.java
+    └── NegativeSearchTest.java
 ```
 
-## Test Cases (Positive Search)
+## Test Cases
+
+### Positive Search (10 Tests)
 
 | # | Test | Description |
 |---|------|-------------|
@@ -43,13 +45,22 @@ src/
 | 9 | Short Query | Search "TV" (2 characters) |
 | 10 | Price Visibility | Search and verify prices are displayed in results |
 
-## Prerequisites
+### Negative Search (10 Tests)
 
-- Java JDK 11+
-- Maven
-- Appium Server 2.x (`npm install -g appium`)
-- UiAutomator2 driver (`appium driver install uiautomator2`)
-- Android emulator or real device with Amazon app installed
+| # | Test | Description |
+|---|------|-------------|
+| 1 | Empty Query | Submit empty search and verify app doesn't crash |
+| 2 | Only Special Characters | Search "@#$%^&*" and verify graceful handling |
+| 3 | SQL Injection | Search "' OR 1=1 --" and verify system is secure |
+| 4 | Excessively Long Query | Search 500+ characters and verify stability |
+| 5 | Gibberish Text | Search "xyzqwrtplmk12345" and verify proper response |
+| 6 | XSS Injection | Search "\<script\>alert('XSS')\</script\>" and verify security |
+| 7 | Only Spaces | Search "     " and verify app handles it |
+| 8 | HTML Tags | Search HTML input and verify it's treated as plain text |
+| 9 | Emoji Characters | Search with emojis and verify no crash |
+| 10 | Control Characters | Search with newline/tab characters and verify stability |
+
+
 
 ## Setup & Run
 
